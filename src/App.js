@@ -14,12 +14,17 @@ const [mySearch, setMySearch] = useState ('');
 const [myRecipe, setMyRecipe] = useState ([]);
 const [wordSubmit, setWordSubmit] = useState ('tomato');
 
-useEffect(async() =>{
-  const oneEffect = await fetch (`https://api.edamam.com/search?q=${wordSubmit}&app_id=${My_Id}&app_key=${My_Key}`);
-  const twoEffect = await oneEffect.json();
-  console.log(twoEffect);
-  setMyRecipe(twoEffect.hits);
+useEffect(() =>{
+  async function fetchData(){
+    const oneEffect = await fetch (`https://api.edamam.com/search?q=${wordSubmit}&app_id=${My_Id}&app_key=${My_Key}`);
+    const twoEffect = await oneEffect.json();
+    console.log(twoEffect);
+    setMyRecipe(twoEffect.hits);
+  }
+  fetchData();
 }, [wordSubmit])
+
+
 
 const myRecipeSearch = (e) =>{
   console.log(e.target.value);
