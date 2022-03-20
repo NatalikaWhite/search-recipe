@@ -18,16 +18,13 @@ useEffect(() =>{
   async function fetchData(){
     const oneEffect = await fetch (`https://api.edamam.com/search?q=${wordSubmit}&app_id=${My_Id}&app_key=${My_Key}`);
     const twoEffect = await oneEffect.json();
-    console.log(twoEffect);
     setMyRecipe(twoEffect.hits);
   }
   fetchData();
 }, [wordSubmit])
 
 
-
 const myRecipeSearch = (e) =>{
-  console.log(e.target.value);
   setMySearch(e.target.value)
 }
 
@@ -47,8 +44,9 @@ const finalSearch = (e) =>{
           </form>
         </div>
         <div className="container">
-        <button>Search</button>
+        <button onClick={finalSearch}>Search</button>
         </div>
+
 
         <div>
         {myRecipe.map (element=>(
